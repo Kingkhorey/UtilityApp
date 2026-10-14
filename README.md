@@ -1,55 +1,54 @@
-# MobileTech Utility App
+# 🛠️ UtilityApp
 
-This is a basic Android app template for **Assessment 1: Utility App**.
-It provides the structure for a simple tabular UI using **Jetpack Compose** and **Material Design 3**.
-
----
-
-## Getting Started
-
-### How to Run
-1. Clone or download this repo  
-2. Open in Android Studio  
-3. Run on an emulator or physical device (API 26+ recommended)  
+**UtilityApp** is a modern Android utility application built with Jetpack Compose and designed around clean architecture principles. It provides quick access to daily features, live quotes, customizable settings, and a sleek user interface.
 
 ---
 
-## Composables
+## 📱 Features & Highlights
 
-### UtilityApp()
-- Contains the screen layout using a Scaffold
-- Toggles content between Utility and Settings
-
-### UtilityScreen()
-- Displays a simple counter (replace with your utility logic)  
-- Includes a button to increment the counter
-
-### SettingsScreen()
-- Placeholder for user preferences or configuration  
-- Can be extended to modify main screen behavior (e.g., theme, units, limits)  
+- **Dynamic Quote Integration:** Fetches and displays daily motivational/tech quotes from local repositories or remote APIs.
+- **Interactive UI Components:** Custom-built choice chips, dynamic greeting headers, and responsive layout sections.
+- **Theme Customization:** Seamless light/dark backdrop theme switching handled via custom UI states.
+- **Settings Management:** Dedicated user settings screen to toggle application preferences and view configuration details.
+- **Modular Architecture:** Clean separation of concerns featuring dependency injection containers and repository patterns.
 
 ---
 
-## Key Concepts Covered
+## 🏛️ Architecture & Tech Stack
 
-| Week | Concept                        | Used In                          |
-|------|--------------------------------|----------------------------------|
-| 1    | Kotlin + Android Studio         | MainActivity.kt |
-| 2    | Jetpack Compose Layouts         | UtilityApp(), UtilityScreen(), SettingsScreen()   |
-| 3    | Material Design 3               | MobileTechUtilityAppTheme, MaterialTheme.typography |
-| 4    | ViewModel | Not included in starter          |
-| 5    | Retrofit  | Not included in starter          |
+This project follows **Android Architecture Guidelines** and modern declarative UI paradigms:
 
----
-
-## Suggested Extensions
-- Replace counter with a real utility (e.g., hydration tracker, timer)  
-- Add a ViewModel for state management  
-- Use SharedPreferences or DataStore to persist settings  
-- Add a simple API call using Retrofit (e.g., fetch weather or quotes)  
+- **UI Framework:** [Jetpack Compose](https://developer.android.com/jetpack/compose) (Declarative UI)
+- **Architecture Pattern:** MVVM (Model-View-ViewModel) with unidirectional data flow (UDF).
+- **Dependency Management:** Custom lightweight `AppContainer` pattern for manual dependency injection.
+- **Data Layer:** 
+  - Repository pattern handling data sources.
+  - Remote Data Transfer Objects (DTOs) and REST API service interfaces.
+  - Local fallback and static quote providers.
+- **Testing:** Comprehensive unit tests for repositories, view models, and UI components using JUnit.
 
 ---
 
-## 📚 License
-This template is provided for educational use in CP3406.  
-Feel free to modify and extend it for your assessment.
+## 📂 Project Structure
+
+```text
+app/src/main/java/au/edu/jcu/assessment/utilityapp/
+│
+├── data/
+│   ├── local/          # Local data sources and static datasets
+│   ├── model/          # Data models and DTOs (Quote, QuoteSource)
+│   ├── remote/         # Retrofit/API interfaces and network DTOs
+│   └── QuoteRepository.kt # Single source of truth for data handling
+│
+├── di/
+│   └── AppContainer.kt # Dependency injection container
+│
+├── ui/
+│   ├── components/     # Reusable UI widgets (ChoiceChips, Headers, etc.)
+│   ├── theme/          # Custom theming, backdrops, and styling
+│   ├── QuoteViewModel.kt # UI state management and business logic
+│   ├── QuoteUiState.kt # Immutable UI state definitions
+│   ├── SettingsScreen.kt # Application settings screen
+│   └── UtilityApp.kt   # Main navigation/scaffold entry point
+│
+└── QuoteApplication.kt # Application-level initialization
